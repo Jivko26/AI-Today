@@ -1,11 +1,11 @@
 ﻿namespace Artificial_Inteligence_Forum.DTO_s.Articles
 {
-    using System;
-    using System.Collections.Generic;
 
     public class ArticleInputDTO
     {
         public int Id { get; set; }
+
+        public string ImageUrl { get; set; }
 
         public string Heading { get; set; }
 

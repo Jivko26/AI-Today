@@ -1,71 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import RecentArticleItem from "./RecentArticleItem";
+
+const articlesUrl = "https://localhost:44319/articles/recentArticles";
 
 function RecentArticles() {
+
+    const [articles, setArticles] = useState([]);
+
+    useEffect(() => {
+        fetch(articlesUrl)
+            .then(result => result.json())
+            .then(articles => {
+                setArticles(Object.values(articles))
+            });
+    }, []);
+
     return (
         <section id="works">
-            <div class="container">
+            <div className="container">
                 <div class="row">
-                    <div class="span12">
+                    <div className="span12">
                         <h3>Recent articles</h3>
-                        <div class="row">
+                        <div className="row">
 
-                            <div class="grid cs-style-3">
-                                <div class="span3">
-                                    <div class="item">
-                                        <figure>
-                                            <div><img src="img/dummies/works/1.jpg" alt=""/></div>
-                                            <figcaption>
-                                                <h3>Article name</h3>
-                                                <p>
-                                                    <a href="img/dummies/works/big.png" data-pretty="prettyPhoto[gallery1]" title="Portfolio caption here"><i class="icon-zoom-in icon-circled icon-bglight icon-2x active"></i></a>
-                                                    <a href="#"><i class="icon-file icon-circled icon-bglight icon-2x active"></i></a>
-                                                </p>
-                                            </figcaption>
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="span3">
-                                    <div class="item">
-                                        <figure>
-                                            <div><img src="img/dummies/works/2.jpg" alt=""/></div>
-                                            <figcaption>
-                                                <h3>Article name</h3>
-                                                <p>
-                                                    <a href="img/dummies/works/big.png" data-pretty="prettyPhoto[gallery1]" title="Portfolio caption here"><i class="icon-zoom-in icon-circled icon-bglight icon-2x active"></i></a>
-                                                    <a href="#"><i class="icon-file icon-circled icon-bglight icon-2x active"></i></a>
-                                                </p>
-                                            </figcaption>
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="span3">
-                                    <div class="item">
-                                        <figure>
-                                            <div><img src="img/dummies/works/3.jpg" alt=""/></div>
-                                            <figcaption>
-                                                <h3>Article name</h3>
-                                                <p>
-                                                    <a href="img/dummies/works/big.png" data-pretty="prettyPhoto[gallery1]" title="Portfolio caption here"><i class="icon-zoom-in icon-circled icon-bglight icon-2x active"></i></a>
-                                                    <a href="#"><i class="icon-file icon-circled icon-bglight icon-2x active"></i></a>
-                                                </p>
-                                            </figcaption>
-                                        </figure>
-                                    </div>
-                                </div>
-                                <div class="span3">
-                                    <div class="item">
-                                        <figure>
-                                            <div><img src="img/dummies/works/4.jpg" alt=""/></div>
-                                            <figcaption>
-                                                <h3>Article name</h3>
-                                                <p>
-                                                    <a href="img/dummies/works/big.png" data-pretty="prettyPhoto[gallery1]" title="Portfolio caption here"><i class="icon-zoom-in icon-circled icon-bglight icon-2x active"></i></a>
-                                                    <a href="#"><i class="icon-file icon-circled icon-bglight icon-2x active"></i></a>
-                                                </p>
-                                            </figcaption>
-                                        </figure>
-                                    </div>
-                                </div>
+                            <div className="grid cs-style-3">
+                                {articles.map(a => <RecentArticleItem key={a.id} image={a.image} heading={ a.heading }/>) }
                             </div>
 
                         </div>

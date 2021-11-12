@@ -10,7 +10,7 @@ const categoriesUrl = "https://localhost:44319/categories";
 
 const topicsUrl = "https://localhost:44319/topics";
 
-const articlesUrl = "https://localhost:44319/articles";
+const articlesUrl = "https://localhost:44319/articles/articlesDropdown";
 
 function Header() {
 

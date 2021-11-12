@@ -18,11 +18,12 @@
             this.dbContext = dbContext;
         }
 
-        public async Task<bool> CreateArticleAsync(int id, string heading, string content,  int topicId, int categoryId)
+        public async Task<bool> CreateArticleAsync(int id, string image, string heading, string content,  int topicId, int categoryId)
         {
             var article = new Article
             {
                 Id = id,
+                ImageURL = image,
                 Heading = heading,
                 Content = content,
                 CreatedOn = DateTime.UtcNow,
@@ -47,5 +48,16 @@
 
             return articles;
         }
+
+        public IEnumerable<RecentArticlesServiceModel> GetRecentArticles()
+            => this.dbContext.Articles
+            .OrderByDescending(a => a.CreatedOn)
+            .Take(4)
+            .Select(a => new RecentArticlesServiceModel
+            {
+                Id = a.Id,
+                Image = a.ImageURL,
+                Heading = a.Heading
+            }).ToList();
     }
 }

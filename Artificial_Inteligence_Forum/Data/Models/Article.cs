@@ -8,6 +8,9 @@
         public int Id { get; set; }
 
         [Required]
+        public string ImageURL { get; set; }
+
+        [Required]
         public string Heading { get; set; }
 
         [Required]

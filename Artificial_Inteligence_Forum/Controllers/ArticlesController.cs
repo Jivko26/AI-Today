@@ -35,7 +35,7 @@
                 this.ModelState.AddModelError(nameof(article.TopicId), "This topic does not exist.");
             }
 
-            var result = await this.articlesService.CreateArticleAsync(article.Id, article.Heading, article.Content, article.TopicId, article.CategoryId);
+            var result = await this.articlesService.CreateArticleAsync(article.Id, article.ImageUrl, article.Heading, article.Content, article.TopicId, article.CategoryId);
 
             if (result)
             {
@@ -45,10 +45,20 @@
             return this.BadRequest();
         }
 
-        [HttpGet(Name = "getArticlesDropdown")]
+        [HttpGet]
+        [Route("articlesDropdown")]
         public IEnumerable<ArticlesDropdownServiceModel> GetArticlesDropdown() 
         {
             var articles = this.articlesService.GetArticles();
+
+            return articles;
+        }
+
+        [HttpGet]
+        [Route("recentArticles")]
+        public IEnumerable<RecentArticlesServiceModel> GetRecentArticles()
+        {
+            var articles = this.articlesService.GetRecentArticles();
 
             return articles;
         }

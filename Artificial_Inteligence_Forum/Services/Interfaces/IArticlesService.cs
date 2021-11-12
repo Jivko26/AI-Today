@@ -6,8 +6,10 @@
 
     public interface IArticlesService
     {
-        public Task<bool> CreateArticleAsync(int id, string heading, string content, int topicId, int categoryId);
+        public Task<bool> CreateArticleAsync(int id, string image, string heading, string content, int topicId, int categoryId);
 
         public IEnumerable<ArticlesDropdownServiceModel> GetArticles();
+
+        public IEnumerable<RecentArticlesServiceModel> GetRecentArticles();
     }
 }
