@@ -2,7 +2,9 @@
 {
     using Artificial_Inteligence_Forum.DTO_s.Articles;
     using Artificial_Inteligence_Forum.Services.Interfaces;
+    using Artificial_Inteligence_Forum.Services.Models;
     using Microsoft.AspNetCore.Mvc;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     [ApiController]
@@ -33,7 +35,7 @@
                 this.ModelState.AddModelError(nameof(article.TopicId), "This topic does not exist.");
             }
 
-            var result = await this.articlesService.CreateArticleAsync(article.Id, article.Heading, article.Content, article.TopicId, article.CategoryId, article.UserId);
+            var result = await this.articlesService.CreateArticleAsync(article.Id, article.Heading, article.Content, article.TopicId, article.CategoryId);
 
             if (result)
             {
@@ -41,6 +43,14 @@
             }
 
             return this.BadRequest();
+        }
+
+        [HttpGet(Name = "getArticlesDropdown")]
+        public IEnumerable<ArticlesDropdownServiceModel> GetArticlesDropdown() 
+        {
+            var articles = this.articlesService.GetArticles();
+
+            return articles;
         }
     }
 }

@@ -8,19 +8,19 @@
 
     [ApiController]
     [Route("[controller]")]
-    public class CategoriesController : ControllerBase
+    public class TopicsController : ControllerBase
     {
-        private readonly ICategoryService categoryService;
+        private readonly ITopicsService topicsService;
 
-        public CategoriesController(ICategoryService categoryService)
+        public TopicsController(ITopicsService topicsService)
         {
-            this.categoryService = categoryService;
+            this.topicsService = topicsService;
         }
 
         [HttpGet]
-        public IEnumerable<CategoryServiceModel> Get()
+        public IEnumerable<TopicServiceModel> Get()
         {
-            return this.categoryService.GetCategoriesAsync();
+            return this.topicsService.GetTopics();
         }
     }
 }

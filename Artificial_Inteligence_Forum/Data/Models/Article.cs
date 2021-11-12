@@ -15,11 +15,6 @@
 
         public DateTime CreatedOn { get; set; }
 
-        [Required]
-        public string AuthorId { get; set; }
-
-        public ApplicationUser Author { get; set; }
-
         public int CategoryId { get; set; }
 
         public Category Category { get; set; }

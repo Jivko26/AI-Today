@@ -1,10 +1,13 @@
 ﻿namespace Artificial_Inteligence_Forum.Services.Interfaces
 {
-    using System;
+    using Artificial_Inteligence_Forum.Services.Models;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     public interface IArticlesService
     {
-        public Task<bool> CreateArticleAsync(int id, string heading, string content, int topicId, int categoryId, string userId);
+        public Task<bool> CreateArticleAsync(int id, string heading, string content, int topicId, int categoryId);
+
+        public IEnumerable<ArticlesDropdownServiceModel> GetArticles();
     }
 }

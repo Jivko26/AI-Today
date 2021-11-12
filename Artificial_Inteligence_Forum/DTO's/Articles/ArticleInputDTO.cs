@@ -13,8 +13,6 @@
 
         public int TopicId { get; set; }
 
-        public string UserId { get; set; }
-
         public int CategoryId { get; set; }
 
     }
